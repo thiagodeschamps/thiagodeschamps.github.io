@@ -22,6 +22,7 @@ function App() {
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [blobsAnimated, setBlobsAnimated] = useState(false);
+  const [lang, setLang] = useState("en");
 
   // Final positions for blobs
   const blob1Final = { x: -20, y: -10 };
@@ -191,6 +192,14 @@ function App() {
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
+
+              {/* Language Switch */}
+              <button
+                onClick={() => setLang(lang === "en" ? "pt" : "en")}
+                className="ml-4 px-3 py-1 rounded bg-accent text-white font-semibold transition hover:bg-accentHover"
+              >
+                {lang === "en" ? "Português" : "English"}
+              </button>
             </div>
           </div>
 
@@ -222,14 +231,14 @@ function App() {
 
       {/* Main Content */}
       <main className="relative z-10 max-w-4xl mx-auto px-4 py-8">
-        <Hero />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Education />
+        <Hero lang={lang} />
+        <Skills lang={lang} />
+        <Experience lang={lang} />
+        <Projects lang={lang} />
+        <Education lang={lang} />
       </main>
       
-      <Footer />
+      <Footer lang={lang} />
     </div>
   );
 }

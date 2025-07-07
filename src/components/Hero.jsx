@@ -16,8 +16,30 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function Hero() {
+const text = {
+  en: {
+    title: "Data (Platform) Engineer",
+    summary: "I'm a data engineer who loves building data platforms from the ground up. My day-to-day is all about connecting systems, making sure data is reliable, and keeping everything running smoothly—whether it's integration, quality, governance, or DevOps for data. If you're curious about how this all works or need help with your own data setup, just ask!",
+    location: "São Paulo, BR",
+    email: "Email",
+    github: "GitHub",
+    linkedin: "LinkedIn",
+    cv: "CV"
+  },
+  pt: {
+    title: "Engenheiro de Dados (Plataforma)",
+    summary: "Sou engenheiro de dados e gosto de construir plataformas de dados do zero. No dia a dia, conecto sistemas, garanto a confiabilidade dos dados e mantenho tudo funcionando—seja integração, qualidade, governança ou DevOps para dados. Se quiser saber mais ou precisa de ajuda com dados, é só chamar!",
+    location: "São Paulo, BR",
+    email: "E-mail",
+    github: "GitHub",
+    linkedin: "LinkedIn",
+    cv: "CV"
+  }
+};
+
+export default function Hero({ lang }) {
   const isMobile = useIsMobile();
+  const t = text[lang] || text.en;
   return (
     <section className="flex flex-col items-center gap-8 py-10 px-4 sm:py-16 sm:gap-10 text-center relative z-10 w-full max-w-screen-sm mx-auto">
       {/* Profile Image */}
@@ -55,7 +77,7 @@ export default function Hero() {
         transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        Data (Platform) Engineer
+        {t.title}
       </motion.h2>
 
       {/* Description */}
@@ -66,7 +88,7 @@ export default function Hero() {
         transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        I'm a data engineer who loves building data platforms from the ground up. My day-to-day is all about connecting systems, making sure data is reliable, and keeping everything running smoothly—whether it's integration, quality, governance, or DevOps for data. If you're curious about how this all works or need help with your own data setup, just ask!
+        {t.summary}
       </motion.p>
 
       {/* Social Links */}
@@ -79,43 +101,43 @@ export default function Hero() {
       >
         <a
           href="mailto:thiago.desch@gmail.com"
-          title="Email"
+          title={t.email}
           className="btn-hero group w-14 h-14 flex items-center justify-center rounded-xl bg-cardLight/60 dark:bg-cardDark/60 hover:bg-accent/10 transition text-accent text-xl shadow-md"
           target="_blank"
-          aria-label="Email"
+          aria-label={t.email}
         >
           <Mail className="w-6 h-6" />
         </a>
         <a
           href="https://github.com/thiagodeschamps"
-          title="GitHub"
+          title={t.github}
           className="btn-hero group w-14 h-14 flex items-center justify-center rounded-xl bg-cardLight/60 dark:bg-cardDark/60 hover:bg-accent/10 transition text-accent text-xl shadow-md"
           target="_blank"
-          aria-label="GitHub"
+          aria-label={t.github}
         >
           <Github className="w-6 h-6" />
         </a>
         <a
           href="https://linkedin.com/in/thiago-deschamps"
-          title="LinkedIn"
+          title={t.linkedin}
           className="btn-hero group w-14 h-14 flex items-center justify-center rounded-xl bg-cardLight/60 dark:bg-cardDark/60 hover:bg-accent/10 transition text-accent text-xl shadow-md"
           target="_blank"
-          aria-label="LinkedIn"
+          aria-label={t.linkedin}
         >
           <Linkedin className="w-6 h-6" />
         </a>
         <a
           href="cv_thiagodeschamps_en.pdf"
-          title="Download CV"
+          title={t.cv}
           className="btn-hero group w-14 h-14 flex items-center justify-center rounded-xl bg-cardLight/60 dark:bg-cardDark/60 hover:bg-accent/10 transition text-accent text-xl shadow-md"
           target="_blank"
-          aria-label="Download CV"
+          aria-label={t.cv}
         >
           <Download className="w-6 h-6" />
         </a>
         <span
           className="btn-hero group w-14 h-14 flex items-center justify-center rounded-xl bg-cardLight/60 dark:bg-cardDark/60 text-blue-500 text-xl shadow-md cursor-default"
-          title="São Paulo, Brazil"
+          title={t.location}
         >
           <MapPin className="w-6 h-6" />
         </span>

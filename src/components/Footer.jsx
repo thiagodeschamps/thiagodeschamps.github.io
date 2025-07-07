@@ -2,6 +2,21 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
+const text = {
+  en: {
+    madeWith: "Made with",
+    by: "by",
+    copyright: "All rights reserved.",
+    ask: "Have a question? Reach out!"
+  },
+  pt: {
+    madeWith: "Feito com",
+    by: "por",
+    copyright: "Todos os direitos reservados.",
+    ask: "Tem uma dúvida? Fale comigo!"
+  }
+};
+
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -15,8 +30,9 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function Footer() {
+export default function Footer({ lang }) {
   const isMobile = useIsMobile();
+  const t = text[lang] || text.en;
   return (
     <footer className="py-10 mt-16 border-t border-borderLight/50 dark:border-borderDark/50 bg-black/40 backdrop-blur-sm w-full">
       <div className="max-w-2xl mx-auto px-4">
@@ -60,16 +76,16 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-textLightSecondary dark:text-textDarkSecondary text-sm sm:text-base">
             <p className="flex flex-col sm:flex-row items-center justify-center gap-2">
-              <span>&copy; {new Date().getFullYear()} Thiago Deschamps</span>
+              <span>{t.madeWith} <span className="text-red-500">♥</span> {t.by} Thiago Deschamps</span>
               <span className="flex items-center gap-1">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-500 animate-pulse" />
                 <span>using React & Tailwind</span>
               </span>
             </p>
             <p className="text-xs mt-2 opacity-80">
               Data Platform Engineer • São Paulo, Brazil
             </p>
+            <p className="text-xs mt-2 opacity-80">{t.copyright}</p>
+            <div className="mt-2 text-xs sm:text-sm font-medium text-accent dark:text-accentHover">{t.ask}</div>
           </div>
         </motion.div>
       </div>

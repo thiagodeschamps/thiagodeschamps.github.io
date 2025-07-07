@@ -4,7 +4,10 @@ import { Calendar, MapPin, Building2, Award, Globe, ArrowUpRight } from "lucide-
 
 const jobs = [
     {
-        title: "Data Platform Engineer Specialist",
+        title: {
+            en: "Data Platform Engineer Specialist",
+            pt: "Especialista em Engenharia de Plataforma de Dados"
+        },
         company: "GFT Technologies",
         companyShort: "GFT Technologies",
         companyUrl: "https://www.gft.com/",
@@ -12,16 +15,30 @@ const jobs = [
         initials: "GFT",
         date: "2024–Present",
         location: "São Paulo, Brazil",
-        type: "Full-time",
-        bullets: [
-            "Architected and deployed petabyte-scale data platform serving 1000+ concurrent users with 99.9% SLA uptime across AWS, Trino, and Delta Lake infrastructure.",
-            "Implemented automated RAG data pipelines and LLM documentation systems using AWS Bedrock, achieving 80% improvement in data catalog efficiency and user adoption.",
-            "Optimized query performance and reduced infrastructure costs by 45% through advanced query optimization, caching strategies, and resource management.",
-            "Established comprehensive data governance framework using OpenMetadata, ensuring data lineage, quality monitoring, and compliance across all data assets."
-        ]
+        type: {
+            en: "Full-time",
+            pt: "Tempo integral"
+        },
+        bullets: {
+            en: [
+                "Architected and deployed petabyte-scale data platform serving 1000+ concurrent users with 99.9% SLA uptime across AWS, Trino, and Delta Lake infrastructure.",
+                "Implemented automated RAG data pipelines and LLM documentation systems using AWS Bedrock, achieving 80% improvement in data catalog efficiency and user adoption.",
+                "Optimized query performance and reduced infrastructure costs by 45% through advanced query optimization, caching strategies, and resource management.",
+                "Established comprehensive data governance framework using OpenMetadata, ensuring data lineage, quality monitoring, and compliance across all data assets."
+            ],
+            pt: [
+                "Arquetei e implantei plataforma de dados em escala petabyte atendendo 1000+ usuários simultâneos com 99.9% de SLA de uptime em infraestrutura AWS, Trino e Delta Lake.",
+                "Implementei pipelines de dados RAG automatizados e sistemas de documentação LLM usando AWS Bedrock, alcançando 80% de melhoria na eficiência do catálogo de dados e adoção de usuários.",
+                "Otimizei performance de consultas e reduzi custos de infraestrutura em 45% através de otimização avançada de consultas, estratégias de cache e gerenciamento de recursos.",
+                "Estabeleci framework abrangente de governança de dados usando OpenMetadata, garantindo linhagem de dados, monitoramento de qualidade e conformidade em todos os ativos de dados."
+            ]
+        }
     },
     {
-        title: "Senior Data Platform Engineer",
+        title: {
+            en: "Senior Data Platform Engineer",
+            pt: "Engenheiro Sênior de Plataforma de Dados"
+        },
         company: "Grupo Boticário",
         companyShort: "Grupo Boticário",
         companyUrl: "https://www.grupoboticario.com.br/",
@@ -29,15 +46,28 @@ const jobs = [
         initials: "GB",
         date: "2024",
         location: "São Paulo, Brazil",
-        type: "Full-time",
-        bullets: [
-            "Designed and implemented secure API gateway for BigQuery integration, significantly improving security compliance scores from 60% to 98% across all data access points.",
-            "Automated CI/CD pipelines and Looker deployment processes, reducing manual deployment workload by 80% and improving deployment frequency by 300%.",
-            "Led cross-functional teams in data platform modernization initiatives, resulting in 40% faster data processing and improved data quality metrics."
-        ]
+        type: {
+            en: "Full-time",
+            pt: "Tempo integral"
+        },
+        bullets: {
+            en: [
+                "Designed and implemented secure API gateway for BigQuery integration, significantly improving security compliance scores from 60% to 98% across all data access points.",
+                "Automated CI/CD pipelines and Looker deployment processes, reducing manual deployment workload by 80% and improving deployment frequency by 300%.",
+                "Led cross-functional teams in data platform modernization initiatives, resulting in 40% faster data processing and improved data quality metrics."
+            ],
+            pt: [
+                "Projetei e implementei gateway de API seguro para integração BigQuery, melhorando significativamente os scores de conformidade de segurança de 60% para 98% em todos os pontos de acesso a dados.",
+                "Automatizei pipelines CI/CD e processos de deploy do Looker, reduzindo carga de trabalho manual de deploy em 80% e melhorando frequência de deploy em 300%.",
+                "Liderei equipes multifuncionais em iniciativas de modernização da plataforma de dados, resultando em 40% de processamento de dados mais rápido e métricas de qualidade de dados melhoradas."
+            ]
+        }
     },
     {
-        title: "Data Engineer",
+        title: {
+            en: "Data Engineer",
+            pt: "Engenheiro de Dados"
+        },
         company: "International Flavors & Fragrances",
         companyShort: "IFF",
         companyUrl: "https://www.iff.com/",
@@ -45,15 +75,28 @@ const jobs = [
         initials: "IFF",
         date: "2023–2024",
         location: "São Paulo, Brazil",
-        type: "Full-time",
-        bullets: [
-            "Developed and deployed scalable ETL/ELT pipelines with dynamic schema evolution, processing data from 50+ global manufacturing plants with real-time monitoring.",
-            "Built AutoGC analysis application using FastAPI, Kubernetes, and Snowflake, reducing data analysis time by 85% and improving decision-making speed across global operations.",
-            "Implemented automated data quality monitoring and alerting systems, reducing data anomalies by 75% and improving overall data reliability."
-        ]
+        type: {
+            en: "Full-time",
+            pt: "Tempo integral"
+        },
+        bullets: {
+            en: [
+                "Developed and deployed scalable ETL/ELT pipelines with dynamic schema evolution, processing data from 50+ global manufacturing plants with real-time monitoring.",
+                "Built AutoGC analysis application using FastAPI, Kubernetes, and Snowflake, reducing data analysis time by 85% and improving decision-making speed across global operations.",
+                "Implemented automated data quality monitoring and alerting systems, reducing data anomalies by 75% and improving overall data reliability."
+            ],
+            pt: [
+                "Desenvolvi e implantei pipelines ETL/ELT escaláveis com evolução dinâmica de schema, processando dados de 50+ plantas de manufatura globais com monitoramento em tempo real.",
+                "Construí aplicação de análise AutoGC usando FastAPI, Kubernetes e Snowflake, reduzindo tempo de análise de dados em 85% e melhorando velocidade de tomada de decisão em operações globais.",
+                "Implementei sistemas automatizados de monitoramento e alerta de qualidade de dados, reduzindo anomalias de dados em 75% e melhorando confiabilidade geral dos dados."
+            ]
+        }
     },
     {
-        title: "Data Engineer",
+        title: {
+            en: "Data Engineer",
+            pt: "Engenheiro de Dados"
+        },
         company: "Americanas S.A.",
         companyShort: "Americanas S.A.",
         companyUrl: "https://www.americanas.com.br/",
@@ -61,35 +104,83 @@ const jobs = [
         initials: "AM",
         date: "2021–2023",
         location: "São Paulo, Brazil",
-        type: "Full-time",
+        type: {
+            en: "Full-time",
+            pt: "Tempo integral"
+        },
         progression: [
             {
-                role: "Data Engineer",
+                role: {
+                    en: "Data Engineer",
+                    pt: "Engenheiro de Dados"
+                },
                 period: "2022–2023",
-                highlights: [
-                    "Architected and deployed real-time data streaming platform processing 100M+ daily records using Kafka, Debezium, GCP, Python, and Go microservices.",
-                    "Reduced data pipeline errors by 90% through comprehensive monitoring, alerting, and automated recovery mechanisms using Infrastructure as Code (Terraform).",
-                    "Optimized data warehouse performance and reduced query costs by 60% through advanced indexing strategies and query optimization techniques."
-                ]
+                highlights: {
+                    en: [
+                        "Architected and deployed real-time data streaming platform processing 100M+ daily records using Kafka, Debezium, GCP, Python, and Go microservices.",
+                        "Reduced data pipeline errors by 90% through comprehensive monitoring, alerting, and automated recovery mechanisms using Infrastructure as Code (Terraform).",
+                        "Optimized data warehouse performance and reduced query costs by 60% through advanced indexing strategies and query optimization techniques."
+                    ],
+                    pt: [
+                        "Arquetei e implantei plataforma de streaming de dados em tempo real processando 100M+ registros diários usando Kafka, Debezium, GCP, Python e microsserviços Go.",
+                        "Reduzi erros de pipeline de dados em 90% através de monitoramento abrangente, alertas e mecanismos de recuperação automatizada usando Infrastructure as Code (Terraform).",
+                        "Otimizei performance do data warehouse e reduzi custos de consulta em 60% através de estratégias avançadas de indexação e técnicas de otimização de consultas."
+                    ]
+                }
             },
             {
-                role: "Data Engineering Intern",
+                role: {
+                    en: "Data Engineering Intern",
+                    pt: "Estagiário de Engenharia de Dados"
+                },
                 period: "2021–2022",
-                highlights: [
-                    "Developed comprehensive data quality framework that reduced data anomalies by 75% and improved overall data reliability across multiple business units.",
-                    "Optimized Airflow DAGs and SQL queries, achieving 60% reduction in data processing costs while maintaining data accuracy and processing speed.",
-                    "Collaborated with cross-functional teams to implement data governance best practices and improve data accessibility for business stakeholders."
-                ]
+                highlights: {
+                    en: [
+                        "Developed comprehensive data quality framework that reduced data anomalies by 75% and improved overall data reliability across multiple business units.",
+                        "Optimized Airflow DAGs and SQL queries, achieving 60% reduction in data processing costs while maintaining data accuracy and processing speed.",
+                        "Collaborated with cross-functional teams to implement data governance best practices and improve data accessibility for business stakeholders."
+                    ],
+                    pt: [
+                        "Desenvolvi framework abrangente de qualidade de dados que reduziu anomalias de dados em 75% e melhorou confiabilidade geral dos dados em múltiplas unidades de negócio.",
+                        "Otimizei DAGs do Airflow e consultas SQL, alcançando 60% de redução nos custos de processamento de dados mantendo precisão e velocidade de processamento.",
+                        "Colaborei com equipes multifuncionais para implementar melhores práticas de governança de dados e melhorar acessibilidade de dados para stakeholders de negócio."
+                    ]
+                }
             }
         ],
-        bullets: [
-            "Architected and deployed real-time data streaming platform processing 100M+ daily records using Kafka, Debezium, GCP, Python, and Go microservices.",
-            "Reduced data pipeline errors by 90% through comprehensive monitoring, alerting, and automated recovery mechanisms using Infrastructure as Code (Terraform).",
-            "Optimized data warehouse performance and reduced query costs by 60% through advanced indexing strategies and query optimization techniques.",
-            "Developed comprehensive data quality framework that reduced data anomalies by 75% and improved overall data reliability across multiple business units."
-        ]
+        bullets: {
+            en: [
+                "Architected and deployed real-time data streaming platform processing 100M+ daily records using Kafka, Debezium, GCP, Python, and Go microservices.",
+                "Reduced data pipeline errors by 90% through comprehensive monitoring, alerting, and automated recovery mechanisms using Infrastructure as Code (Terraform).",
+                "Optimized data warehouse performance and reduced query costs by 60% through advanced indexing strategies and query optimization techniques.",
+                "Developed comprehensive data quality framework that reduced data anomalies by 75% and improved overall data reliability across multiple business units."
+            ],
+            pt: [
+                "Arquetei e implantei plataforma de streaming de dados em tempo real processando 100M+ registros diários usando Kafka, Debezium, GCP, Python e microsserviços Go.",
+                "Reduzi erros de pipeline de dados em 90% através de monitoramento abrangente, alertas e mecanismos de recuperação automatizada usando Infrastructure as Code (Terraform).",
+                "Otimizei performance do data warehouse e reduzi custos de consulta em 60% através de estratégias avançadas de indexação e técnicas de otimização de consultas.",
+                "Desenvolvi framework abrangente de qualidade de dados que reduziu anomalias de dados em 75% e melhorou confiabilidade geral dos dados em múltiplas unidades de negócio."
+            ]
+        }
     },
 ];
+
+const text = {
+  en: {
+    sectionTitle: "Professional Experience",
+    sectionDesc: "Here's where I've worked and what I've done. If you want to know more about my experience or have any questions, just ask me.",
+    date: "Date",
+    location: "Location",
+    type: "Type"
+  },
+  pt: {
+    sectionTitle: "Experiência Profissional",
+    sectionDesc: "Aqui estão os lugares onde trabalhei e o que já fiz. Se quiser saber mais sobre minha experiência ou tiver qualquer dúvida, é só perguntar.",
+    date: "Período",
+    location: "Local",
+    type: "Tipo"
+  }
+};
 
 function CompanyLogo({ src, alt, initials, companyShort }) {
     const [imgError, setImgError] = useState(false);
@@ -126,8 +217,9 @@ function useIsMobile() {
     return isMobile;
 }
 
-export default function Experience() {
+export default function Experience({ lang }) {
     const isMobile = useIsMobile();
+    const t = text[lang] || text.en;
     return (
         <section id="experience" className="py-10 px-4 sm:py-20 w-full max-w-screen-md mx-auto bg-gradient-to-br from-violet-50 via-white to-orange-50 dark:from-bgDark dark:via-bgDark dark:to-bgDark">
             <motion.div
@@ -137,9 +229,9 @@ export default function Experience() {
                 viewport={{ once: true, amount: 0.2 }}
                 className="text-center mb-8 sm:mb-16"
             >
-                <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Professional Experience</h2>
+                <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">{t.sectionTitle}</h2>
                 <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
-                    Here's where I've worked and what I've done. If you want to know more about my experience or have any questions, just ask me.
+                    {t.sectionDesc}
                 </p>
             </motion.div>
 
@@ -169,7 +261,7 @@ export default function Experience() {
                                 {/* Job Details */}
                                 <div className="flex-1 text-left">
                                     <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-textLight dark:text-textDark leading-tight mb-2">
-                                        {job.title}
+                                        {job.title[lang]}
                                     </h3>
                                     <div className="flex items-center gap-2 mb-2">
                                         <Globe className="w-4 h-4 text-accent" />
@@ -200,7 +292,7 @@ export default function Experience() {
                                 </div>
                                 <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full">
                                     <Award className="w-4 h-4 text-green-500" />
-                                    <span className="font-medium">{job.type}</span>
+                                    <span className="font-medium">{job.type[lang]}</span>
                                 </div>
                             </div>
                         </div>
@@ -209,11 +301,11 @@ export default function Experience() {
                         {job.progression ? (
                             <div className="space-y-2">
                                 {job.progression.map((prog, pidx) => (
-                                    <div key={prog.role + prog.period} className="mb-2">
-                                        <div className="font-semibold text-accent text-base sm:text-lg">{prog.role}</div>
+                                    <div key={prog.role[lang] + prog.period} className="mb-2">
+                                        <div className="font-semibold text-accent text-base sm:text-lg">{prog.role[lang]}</div>
                                         <div className="text-xs text-textLightSecondary dark:text-textDarkSecondary mb-1">{prog.period}</div>
                                         <ul className="list-disc pl-5 text-sm sm:text-base text-textLightSecondary dark:text-textDarkSecondary space-y-1">
-                                            {prog.highlights.map((hl, hidx) => (
+                                            {prog.highlights[lang].map((hl, hidx) => (
                                                 <li key={hidx}>{hl}</li>
                                             ))}
                                         </ul>
@@ -224,7 +316,7 @@ export default function Experience() {
 
                         {/* Bullets */}
                         <ul className="list-disc pl-5 text-sm sm:text-base text-textLightSecondary dark:text-textDarkSecondary space-y-1">
-                            {job.bullets.map((bullet, bidx) => (
+                            {job.bullets[lang].map((bullet, bidx) => (
                                 <li key={bidx}>{bullet}</li>
                             ))}
                         </ul>

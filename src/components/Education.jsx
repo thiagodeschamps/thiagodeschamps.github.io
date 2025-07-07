@@ -28,6 +28,21 @@ const languages = [
   }
 ];
 
+const text = {
+  en: {
+    sectionTitle: "Education & Languages",
+    sectionDesc: "Strong academic foundation in computer engineering with specialized focus on data science and distributed systems. Fluent in multiple languages, enabling effective communication in global enterprise environments.",
+    education: "Education",
+    languages: "Languages"
+  },
+  pt: {
+    sectionTitle: "Formação & Idiomas",
+    sectionDesc: "Base acadêmica sólida em engenharia de computação com foco em ciência de dados e sistemas distribuídos. Fluente em vários idiomas, facilitando a comunicação em ambientes empresariais globais.",
+    education: "Formação",
+    languages: "Idiomas"
+  }
+};
+
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -41,8 +56,9 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function Education() {
+export default function Education({ lang }) {
   const isMobile = useIsMobile();
+  const t = text[lang] || text.en;
   return (
     <section id="education" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
       <motion.div
@@ -52,9 +68,9 @@ export default function Education() {
         viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-8 sm:mb-12"
       >
-        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Education & Languages</h2>
+        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">{t.sectionTitle}</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
-          Strong academic foundation in computer engineering with specialized focus on data science and distributed systems. Fluent in multiple languages, enabling effective communication in global enterprise environments.
+          {t.sectionDesc}
         </p>
       </motion.div>
 
@@ -71,7 +87,7 @@ export default function Education() {
             <div className="p-2 bg-accent/10 dark:bg-accent/20 rounded-lg text-accent">
               <BookOpen className="w-6 h-6" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-textLight dark:text-textDark">Education</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-textLight dark:text-textDark">{t.education}</h3>
           </div>
           <div className="space-y-4">
             {education.map((edu, idx) => (
@@ -124,7 +140,7 @@ export default function Education() {
             <div className="p-2 bg-accent/10 dark:bg-accent/20 rounded-lg text-accent">
               <Globe className="w-6 h-6" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-textLight dark:text-textDark">Languages</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-textLight dark:text-textDark">{t.languages}</h3>
           </div>
           <div className="space-y-4">
             {languages.map((lang, idx) => (

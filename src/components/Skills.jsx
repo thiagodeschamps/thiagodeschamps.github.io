@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 const skills = [
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", category: "Programming" },
   { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg", category: "Database" },
+  { name: "Oracle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg", category: "Database" },
+  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", category: "Database" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", category: "Database" },
+  { name: "DynamoDB", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazondynamodb.svg", category: "Database" },
+  { name: "SQL Server", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg", category: "Database" },
   { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", category: "Programming" },
   { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg", category: "Programming" },
   { name: "AWS", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg", category: "Cloud" },
@@ -15,13 +20,36 @@ const skills = [
   { name: "Kafka", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg", category: "Data" },
   { name: "Delta Lake", icon: "https://deltalake.io/assets/logos/delta-lake-logo.svg", category: "Data" },
   { name: "Snowflake", icon: "https://assets.snowflake.com/image/upload/v1683830363/brand-assets/logo/snowflake-logo-blue.svg", category: "Data" },
+  { name: "Airbyte", icon: "https://avatars.githubusercontent.com/u/66407660", category: "Data" },
+  { name: "Soda", icon: "https://avatars.githubusercontent.com/u/66360572", category: "Data" },
+  { name: "Great Expectations", icon: "https://avatars.githubusercontent.com/u/32855585", category: "Data" },
+  { name: "OpenMetadata", icon: "https://avatars.githubusercontent.com/u/72333247", category: "Data" },
+  { name: "AWS Bedrock", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg", category: "AI/LLM" },
+  { name: "ChatGPT", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg", category: "AI/LLM" },
+  { name: "Gemini", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg", category: "AI/LLM" },
   { name: "Terraform", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg", category: "DevOps" },
   { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", category: "DevOps" },
   { name: "GitLab CI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg", category: "DevOps" },
   { name: "GitHub Actions", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/githubactions.svg", category: "DevOps" },
 ];
 
-const categories = ["Programming", "Data", "Cloud", "DevOps", "Database"];
+const categoriesText = {
+  en: ["Programming", "Data", "Cloud", "DevOps", "Database", "AI/LLM"],
+  pt: ["Programação", "Dados", "Nuvem", "DevOps", "Banco de Dados", "IA/LLM"]
+};
+
+const text = {
+  en: {
+    title: "Technical Expertise",
+    description:
+      "Comprehensive expertise in modern data engineering technologies, cloud platforms, and enterprise-grade infrastructure. Proven track record of building scalable, high-performance data platforms with 99.9% uptime SLA."
+  },
+  pt: {
+    title: "Conhecimento Técnico",
+    description:
+      "Experiência abrangente em tecnologias modernas de engenharia de dados, plataformas em nuvem e infraestrutura corporativa. Histórico comprovado de construção de plataformas de dados escaláveis e de alto desempenho com 99,9% de disponibilidade."
+  }
+};
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,8 +64,10 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function Skills() {
+export default function Skills({ lang }) {
   const isMobile = useIsMobile();
+  const t = text[lang] || text.en;
+  const categories = categoriesText[lang] || categoriesText.en;
   return (
     <section id="skills" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
       <motion.div
@@ -47,9 +77,9 @@ export default function Skills() {
         viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-8 sm:mb-12"
       >
-        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Technical Expertise</h2>
+        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">{t.title}</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
-          Comprehensive expertise in modern data engineering technologies, cloud platforms, and enterprise-grade infrastructure. Proven track record of building scalable, high-performance data platforms with 99.9% uptime SLA.
+          {t.description}
         </p>
       </motion.div>
 
@@ -69,7 +99,11 @@ export default function Skills() {
             </h3>
             <div className="flex gap-3 flex-wrap">
               {skills
-                .filter((skill) => skill.category === category)
+                .filter((skill) => {
+                  // Map English categories to Portuguese for filtering
+                  const catEn = categoriesText.en[idx];
+                  return skill.category === catEn;
+                })
                 .map((skill) => (
                   <div
                     key={skill.name}

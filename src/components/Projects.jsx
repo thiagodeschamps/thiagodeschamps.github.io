@@ -41,6 +41,17 @@ const projects = [
   },
 ];
 
+const text = {
+  en: {
+    sectionTitle: "Projects & Publications",
+    sectionDesc: "Here are some things I've built or worked on—real projects, real problems, and a lot of learning along the way. If you want to know more about any of these, just ask me."
+  },
+  pt: {
+    sectionTitle: "Projetos & Publicações",
+    sectionDesc: "Aqui estão alguns projetos e trabalhos que desenvolvi—problemas reais, soluções reais e muito aprendizado no caminho. Se quiser saber mais sobre algum deles, é só perguntar."
+  }
+};
+
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -54,8 +65,9 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function Projects() {
+export default function Projects({ lang }) {
   const isMobile = useIsMobile();
+  const t = text[lang] || text.en;
   return (
     <section id="projects" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
       <motion.div
@@ -65,9 +77,9 @@ export default function Projects() {
         viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-8 sm:mb-12"
       >
-        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Projects & Publications</h2>
+        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">{t.sectionTitle}</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
-          Here are some things I've built or worked on—real projects, real problems, and a lot of learning along the way. If you want to know more about any of these, just ask me.
+          {t.sectionDesc}
         </p>
       </motion.div>
 
