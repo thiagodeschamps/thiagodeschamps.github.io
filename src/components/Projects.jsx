@@ -54,7 +54,7 @@ export default function Projects() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.7 }}
         className="text-center mb-12"
       >
         <h2 className="section-title mb-4">Projects & Publications</h2>
@@ -70,7 +70,7 @@ export default function Projects() {
             key={proj.name}
             initial={{ opacity: 0, y: 30 }}
             animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ delay: idx * 0.1, duration: 0.6 }}
+            transition={{ type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.7 }}
             className={`card p-6 group hover:shadow-xl transition-all duration-300 ${
               proj.featured ? 'ring-2 ring-accent/20' : ''
             }`}
@@ -123,6 +123,7 @@ export default function Projects() {
                 className="inline-flex items-center gap-2 text-accent font-medium hover:text-accentHover transition-colors duration-300 group/link"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
               >
                 <Github className="w-4 h-4" />
                 <span>View Project</span>

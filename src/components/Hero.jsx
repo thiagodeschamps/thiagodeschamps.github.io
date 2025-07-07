@@ -10,7 +10,7 @@ export default function Hero() {
         className="relative"
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 80, delay: 0.1 }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.7, delay: 0.1 }}
       >
         <div className="relative">
           <motion.img
@@ -18,7 +18,7 @@ export default function Hero() {
             alt="Thiago Deschamps"
             className="rounded-full border-4 border-accent shadow-2xl w-36 h-36 md:w-40 md:h-40 object-cover"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
+            transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
           />
           <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-xl" />
         </div>
@@ -29,7 +29,7 @@ export default function Hero() {
         className="text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.25, duration: 0.5 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.25, duration: 0.7 }}
       >
         Thiago Deschamps
       </motion.h1>
@@ -39,7 +39,7 @@ export default function Hero() {
         className="text-xl md:text-2xl font-semibold text-textLightSecondary dark:text-textDarkSecondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.4 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
       >
         Senior Data Platform Engineer
       </motion.h2>
@@ -49,7 +49,7 @@ export default function Hero() {
         className="max-w-3xl mt-4 text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
       >
         Expert in building petabyte-scale data platforms with 99.9% SLA uptime. 
         Specialized in Trino, Delta Lake, Airflow, AWS, GCP & AI-powered data solutions. 
@@ -61,7 +61,7 @@ export default function Hero() {
         className="flex flex-wrap justify-center gap-4 mt-8"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.65 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.65, duration: 0.6 }}
       >
         <motion.a 
           href="mailto:thiago.desch@gmail.com" 
@@ -70,6 +70,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
         >
           <Mail className="w-5 h-5" />
           <span className="hidden sm:inline">Email</span>
@@ -82,6 +83,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
         >
           <Github className="w-5 h-5" />
           <span className="hidden sm:inline">GitHub</span>
@@ -94,6 +96,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
         >
           <Linkedin className="w-5 h-5" />
           <span className="hidden sm:inline">LinkedIn</span>
@@ -106,6 +109,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
         >
           <Download className="w-5 h-5" />
           <span className="hidden sm:inline">CV</span>
@@ -115,6 +119,7 @@ export default function Hero() {
           className="btn-hero group cursor-default" 
           title="São Paulo, Brazil"
           whileHover={{ y: -2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
         >
           <MapPin className="w-5 h-5 text-blue-500" />
           <span className="hidden sm:inline">São Paulo, BR</span>
