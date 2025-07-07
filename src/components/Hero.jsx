@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    function checkMobile() {
+      // Use matchMedia for more reliable detection
+      setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
   return isMobile;
 }
@@ -18,32 +21,62 @@ export default function Hero() {
   return (
     <section className="flex flex-col items-center gap-8 py-10 px-4 sm:py-16 sm:gap-10 text-center relative z-10 w-full max-w-screen-sm mx-auto">
       {/* Profile Image */}
-      <div className="relative flex justify-center w-full">
+      <motion.div
+        className="relative flex justify-center w-full"
+        initial={isMobile ? { scale: 1, opacity: 1 } : { scale: 0.7, opacity: 0 }}
+        whileInView={isMobile ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <img
           src="/imgs/profile.png"
           alt="Thiago Deschamps"
           className="rounded-full border-4 border-accent shadow-lg w-28 h-28 sm:w-36 sm:h-36 object-cover mx-auto"
           loading="lazy"
         />
-      </div>
+      </motion.div>
 
       {/* Name */}
-      <h1 className="text-2xl sm:text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent break-words leading-tight w-full">
+      <motion.h1
+        className="text-2xl sm:text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent break-words leading-tight w-full"
+        initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+        whileInView={isMobile ? { y: 0, opacity: 1 } : { y: 0, opacity: 1 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.25, duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         Thiago Deschamps
-      </h1>
+      </motion.h1>
 
       {/* Title */}
-      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-textLightSecondary dark:text-textDarkSecondary mt-2">
+      <motion.h2
+        className="text-lg sm:text-xl md:text-2xl font-semibold text-textLightSecondary dark:text-textDarkSecondary mt-2"
+        initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={isMobile ? { opacity: 1 } : { opacity: 1 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         Data (Platform) Engineer
-      </h2>
+      </motion.h2>
 
       {/* Description */}
-      <p className="max-w-xl mt-2 sm:mt-4 text-base sm:text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed mx-auto">
+      <motion.p
+        className="max-w-xl mt-2 sm:mt-4 text-base sm:text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed mx-auto"
+        initial={isMobile ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+        whileInView={isMobile ? { y: 0, opacity: 1 } : { y: 0, opacity: 1 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         I'm a data engineer who loves building data platforms from the ground up. My day-to-day is all about connecting systems, making sure data is reliable, and keeping everything running smoothly—whether it's integration, quality, governance, or DevOps for data. If you're curious about how this all works or need help with your own data setup, just ask!
-      </p>
+      </motion.p>
 
       {/* Social Links */}
-      <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8 w-full">
+      <motion.div
+        className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8 w-full"
+        initial={isMobile ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
+        whileInView={isMobile ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: 0.65, duration: 0.6 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <a
           href="mailto:thiago.desch@gmail.com"
           title="Email"
@@ -86,7 +119,7 @@ export default function Hero() {
         >
           <MapPin className="w-6 h-6" />
         </span>
-      </div>
+      </motion.div>
     </section>
   );
 }

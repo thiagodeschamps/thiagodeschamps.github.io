@@ -44,10 +44,12 @@ const projects = [
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    function checkMobile() {
+      setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
   return isMobile;
 }
@@ -56,17 +58,27 @@ export default function Projects() {
   const isMobile = useIsMobile();
   return (
     <section id="projects" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
-      <div className="text-center mb-8 sm:mb-12">
+      <motion.div
+        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="text-center mb-8 sm:mb-12"
+      >
         <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Projects & Publications</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
           Here are some things I've built or worked on—real projects, real problems, and a lot of learning along the way. If you want to know more about any of these, just ask me.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 gap-6">
         {projects.map((proj, idx) => (
-          <div
+          <motion.div
             key={proj.name}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.7 }}
+            viewport={{ once: true, amount: 0.2 }}
             className={`card p-5 sm:p-6 flex flex-col gap-4 bg-cardLight/80 dark:bg-cardDark/80 rounded-2xl shadow-md border border-borderLight/20 dark:border-borderDark/20`}
           >
             {/* Header */}
@@ -119,7 +131,7 @@ export default function Projects() {
               <span>View Project</span>
               <ExternalLink className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
             </a>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -116,10 +116,12 @@ function CompanyLogo({ src, alt, initials, companyShort }) {
 function useIsMobile() {
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
-        setIsMobile(window.innerWidth < 768);
-        const handleResize = () => setIsMobile(window.innerWidth < 768);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        function checkMobile() {
+            setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+        }
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
     }, []);
     return isMobile;
 }
@@ -128,18 +130,28 @@ export default function Experience() {
     const isMobile = useIsMobile();
     return (
         <section id="experience" className="py-10 px-4 sm:py-20 w-full max-w-screen-md mx-auto bg-gradient-to-br from-violet-50 via-white to-orange-50 dark:from-bgDark dark:via-bgDark dark:to-bgDark">
-            <div className="text-center mb-8 sm:mb-16">
+            <motion.div
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                transition={isMobile ? undefined : { type: "tween", ease: "easeOut", duration: 0.7 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="text-center mb-8 sm:mb-16"
+            >
                 <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Professional Experience</h2>
                 <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
                     Here's where I've worked and what I've done. If you want to know more about my experience or have any questions, just ask me.
                 </p>
-            </div>
+            </motion.div>
 
             <div className="space-y-8 max-w-2xl mx-auto">
                 {jobs.map((job, idx) => (
-                    <div
+                    <motion.div
                         key={job.company + job.date}
-                        className="group relative bg-black/60 dark:bg-cardDark/80 rounded-2xl shadow-md backdrop-blur-md border border-white/10 overflow-hidden flex flex-col gap-4 p-5 sm:p-8"
+                        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                        whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.7 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        className={`group relative bg-white/90 dark:bg-cardDark/80 rounded-2xl shadow-md ${!isMobile ? 'hover:shadow-2xl transition-all duration-300 hover:-translate-y-1' : ''} backdrop-blur-md border border-borderLight/20 dark:border-white/10 overflow-hidden flex flex-col gap-4 p-5 sm:p-8`}
                     >
                         {/* Gradient Accent Bar */}
                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accentHover to-purple-500" />
@@ -216,7 +228,7 @@ export default function Experience() {
                                 <li key={bidx}>{bullet}</li>
                             ))}
                         </ul>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>

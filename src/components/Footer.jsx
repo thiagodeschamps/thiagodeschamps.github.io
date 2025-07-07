@@ -5,10 +5,12 @@ import { Github, Linkedin, Mail, Heart } from "lucide-react";
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    function checkMobile() {
+      setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
   return isMobile;
 }
@@ -18,7 +20,13 @@ export default function Footer() {
   return (
     <footer className="py-10 mt-16 border-t border-borderLight/50 dark:border-borderDark/50 bg-black/40 backdrop-blur-sm w-full">
       <div className="max-w-2xl mx-auto px-4">
-        <div className="text-center space-y-6 text-white">
+        <motion.div
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={isMobile ? undefined : { type: "tween", ease: "easeOut", duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center space-y-6 text-white"
+        >
           {/* Social Links */}
           <div className="flex justify-center gap-6 mb-4">
             <a
@@ -63,7 +71,7 @@ export default function Footer() {
               Data Platform Engineer • São Paulo, Brazil
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

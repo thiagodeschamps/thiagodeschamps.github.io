@@ -26,10 +26,12 @@ const categories = ["Programming", "Data", "Cloud", "DevOps", "Database"];
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    function checkMobile() {
+      setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
   return isMobile;
 }
@@ -38,17 +40,27 @@ export default function Skills() {
   const isMobile = useIsMobile();
   return (
     <section id="skills" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
-      <div className="text-center mb-8 sm:mb-12">
+      <motion.div
+        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={isMobile ? undefined : { type: "tween", ease: "easeOut", duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="text-center mb-8 sm:mb-12"
+      >
         <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Technical Expertise</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
           Comprehensive expertise in modern data engineering technologies, cloud platforms, and enterprise-grade infrastructure. Proven track record of building scalable, high-performance data platforms with 99.9% uptime SLA.
         </p>
-      </div>
+      </motion.div>
 
       <div className="space-y-8">
-        {categories.map((category) => (
-          <div
+        {categories.map((category, idx) => (
+          <motion.div
             key={category}
+            initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+            transition={isMobile ? undefined : { type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
             className="card p-5 sm:p-6 flex flex-col gap-4 bg-cardLight/80 dark:bg-cardDark/80 rounded-2xl shadow-md border border-borderLight/20 dark:border-borderDark/20"
           >
             <h3 className="text-lg sm:text-xl font-bold text-accent mb-4 flex items-center gap-2">
@@ -78,7 +90,7 @@ export default function Skills() {
                   </div>
                 ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
