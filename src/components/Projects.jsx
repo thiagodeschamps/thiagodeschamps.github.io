@@ -53,8 +53,9 @@ export default function Projects() {
     <section id="projects" className="py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ type: "tween", ease: "easeOut", duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-12"
       >
         <h2 className="section-title mb-4">Projects & Publications</h2>
@@ -69,8 +70,9 @@ export default function Projects() {
           <motion.div
             key={proj.name}
             initial={{ opacity: 0, y: 30 }}
-            animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.7 }}
+            viewport={{ once: true, amount: 0.2 }}
             className={`card p-6 group hover:shadow-xl transition-all duration-300 ${
               proj.featured ? 'ring-2 ring-accent/20' : ''
             }`}
@@ -124,6 +126,7 @@ export default function Projects() {
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
               >
                 <Github className="w-4 h-4" />
                 <span>View Project</span>

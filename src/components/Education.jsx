@@ -40,8 +40,9 @@ export default function Education() {
     <section id="education" className="py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-12"
       >
         <h2 className="section-title mb-4">Education & Languages</h2>
@@ -55,8 +56,9 @@ export default function Education() {
         {/* Education */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
-          animate={hasAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="card p-6"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -73,8 +75,9 @@ export default function Education() {
               <motion.div
                 key={edu.degree}
                 initial={{ opacity: 0, y: 20 }}
-                animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="space-y-3"
               >
                 <div className="flex items-start gap-3">
@@ -109,8 +112,9 @@ export default function Education() {
         {/* Languages */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
-          animate={hasAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="card p-6"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -127,8 +131,9 @@ export default function Education() {
               <motion.div
                 key={lang.name}
                 initial={{ opacity: 0, y: 20 }}
-                animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="space-y-2"
               >
                 <div className="flex items-center justify-between">
@@ -154,8 +159,9 @@ export default function Education() {
                   <motion.div
                     className="bg-gradient-to-r from-accent to-accentHover h-2 rounded-full"
                     initial={{ width: 0 }}
-                    animate={hasAnimated ? { width: `${lang.proficiency}%` } : { width: 0 }}
+                    whileInView={{ width: `${lang.proficiency}%` }}
                     transition={{ delay: 0.5 + (idx * 0.1), duration: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
                   />
                 </div>
               </motion.div>

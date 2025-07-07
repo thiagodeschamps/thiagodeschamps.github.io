@@ -33,8 +33,9 @@ export default function Skills() {
     <section id="skills" className="py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="text-center mb-12"
       >
         <h2 className="section-title mb-4">Technical Expertise</h2>
@@ -49,8 +50,9 @@ export default function Skills() {
           <motion.div
             key={category}
             initial={{ opacity: 0, x: -20 }}
-            animate={hasAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: categories.indexOf(category) * 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
             className="card p-6"
           >
             <h3 className="text-lg font-bold text-accent mb-4 flex items-center gap-2">

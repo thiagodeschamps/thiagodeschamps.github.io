@@ -124,8 +124,9 @@ export default function Experience() {
         <section id="experience" className="py-20 bg-gradient-to-br from-violet-50 via-white to-orange-50 dark:from-bgDark dark:via-bgDark dark:to-bgDark">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="text-center mb-16"
             >
                 <h2 className="section-title mb-4">Professional Experience</h2>
@@ -140,8 +141,9 @@ export default function Experience() {
                     <motion.div
                         key={job.company + job.date}
                         initial={{ opacity: 0, y: 30 }}
-                        animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1, duration: 0.6 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         className="group relative bg-white dark:bg-cardDark rounded-3xl shadow-xl overflow-hidden border border-borderLight/30 dark:border-borderDark/30 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                     >
                         {/* Gradient Accent Bar */}

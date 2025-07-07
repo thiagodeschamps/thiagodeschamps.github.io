@@ -9,8 +9,9 @@ export default function Hero() {
       <motion.div
         className="relative"
         initial={{ scale: 0.7, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        whileInView={{ scale: 1, opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <div className="relative">
           <motion.img
@@ -28,8 +29,9 @@ export default function Hero() {
       <motion.h1
         className="text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
         initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.25, duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         Thiago Deschamps
       </motion.h1>
@@ -38,8 +40,9 @@ export default function Hero() {
       <motion.h2
         className="text-xl md:text-2xl font-semibold text-textLightSecondary dark:text-textDarkSecondary"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         Data (Platform) Engineer
       </motion.h2>
@@ -48,8 +51,9 @@ export default function Hero() {
       <motion.p
         className="max-w-3xl mt-4 text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed"
         initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         Expert in building petabyte-scale data platforms with 99.9% SLA uptime. 
         Specialized in Trino, Delta Lake, Airflow, AWS, GCP & AI-powered data solutions. 
@@ -60,8 +64,9 @@ export default function Hero() {
       <motion.div
         className="flex flex-wrap justify-center gap-4 mt-8"
         initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        whileInView={{ scale: 1, opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.65, duration: 0.6 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.a 
           href="mailto:thiago.desch@gmail.com" 
