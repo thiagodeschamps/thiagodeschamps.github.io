@@ -60,8 +60,7 @@ export default function Projects() {
       >
         <h2 className="section-title mb-4">Projects & Publications</h2>
         <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-3xl mx-auto">
-          Showcasing innovative solutions and research in data engineering, from academic research to enterprise-scale implementations. 
-          Each project demonstrates technical excellence and measurable business impact.
+          Here are some things I've built or worked on—real projects, real problems, and a lot of learning along the way. If you want to know more about any of these, just ask me.
         </p>
       </motion.div>
 
@@ -102,7 +101,7 @@ export default function Projects() {
 
               {/* Description */}
               <p className="text-textLightSecondary dark:text-textDarkSecondary leading-relaxed">
-                {proj.desc}
+                {proj.desc} If you want details or have questions, just ask me.
               </p>
 
               {/* Technologies */}

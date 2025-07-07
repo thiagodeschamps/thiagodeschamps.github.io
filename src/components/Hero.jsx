@@ -55,9 +55,7 @@ export default function Hero() {
         transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        Expert in building petabyte-scale data platforms with 99.9% SLA uptime. 
-        Specialized in Trino, Delta Lake, Airflow, AWS, GCP & AI-powered data solutions. 
-        Delivering enterprise-grade data infrastructure for finance, retail, and industrial sectors.
+        I work with data engineering—building, running, and fixing data platforms so teams can get the information they need. If you want to talk about data or need a hand, just reach out.
       </motion.p>
 
       {/* Enhanced Social Links */}

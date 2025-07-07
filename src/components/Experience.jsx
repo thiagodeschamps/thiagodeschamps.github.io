@@ -131,8 +131,7 @@ export default function Experience() {
             >
                 <h2 className="section-title mb-4">Professional Experience</h2>
                 <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-3xl mx-auto">
-                    Proven track record of building enterprise-grade data platforms and driving innovation across diverse industries.
-                    Delivering measurable business impact through scalable, high-performance data solutions.
+                    Here's where I've worked and what I've done. If you want to know more about my experience or have any questions, just ask me.
                 </p>
             </motion.div>
 
