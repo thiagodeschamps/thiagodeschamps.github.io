@@ -19,7 +19,7 @@
       "dev": "vite",
       "build": "vite build",
       "preview": "vite preview",
-      "deploy": "npm run build"
+      "deploy": "npm run build && echo 'Build completed. Push the dist folder to GitHub Pages.'"
     }
   }
   
