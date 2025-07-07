@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const skills = [
@@ -23,81 +23,62 @@ const skills = [
 
 const categories = ["Programming", "Data", "Cloud", "DevOps", "Database"];
 
-export default function Skills() {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setHasAnimated(true), 100);
-    return () => clearTimeout(timer);
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+  return isMobile;
+}
 
+export default function Skills() {
+  const isMobile = useIsMobile();
   return (
-    <section id="skills" className="py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="text-center mb-12"
-      >
-        <h2 className="section-title mb-4">Technical Expertise</h2>
-        <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-3xl mx-auto">
-          Comprehensive expertise in modern data engineering technologies, cloud platforms, and enterprise-grade infrastructure. 
-          Proven track record of building scalable, high-performance data platforms with 99.9% uptime SLA.
+    <section id="skills" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
+      <div className="text-center mb-8 sm:mb-12">
+        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Technical Expertise</h2>
+        <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
+          Comprehensive expertise in modern data engineering technologies, cloud platforms, and enterprise-grade infrastructure. Proven track record of building scalable, high-performance data platforms with 99.9% uptime SLA.
         </p>
-      </motion.div>
+      </div>
 
       <div className="space-y-8">
         {categories.map((category) => (
-          <motion.div
+          <div
             key={category}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: categories.indexOf(category) * 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="card p-6"
+            className="card p-5 sm:p-6 flex flex-col gap-4 bg-cardLight/80 dark:bg-cardDark/80 rounded-2xl shadow-md border border-borderLight/20 dark:border-borderDark/20"
           >
-            <h3 className="text-lg font-bold text-accent mb-4 flex items-center gap-2">
+            <h3 className="text-lg sm:text-xl font-bold text-accent mb-4 flex items-center gap-2">
               <div className="w-2 h-2 bg-accent rounded-full" />
               {category}
             </h3>
-            <motion.div
-              className="flex gap-3 flex-wrap"
-              initial="hidden"
-              animate={hasAnimated ? "visible" : "hidden"}
-              variants={{
-                visible: { transition: { staggerChildren: 0.03 } },
-              }}
-            >
+            <div className="flex gap-3 flex-wrap">
               {skills
                 .filter((skill) => skill.category === category)
                 .map((skill) => (
-                  <motion.div
+                  <div
                     key={skill.name}
-                    className="group relative"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    variants={{
-                      hidden: { scale: 0.8, opacity: 0 },
-                      visible: { scale: 1, opacity: 1 },
-                    }}
+                    className="group relative flex flex-col items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-cardLight/60 dark:bg-cardDark/60 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 gap-2 border border-borderLight/30 dark:border-borderDark/30 backdrop-blur-sm group-hover:border-accent/50 cursor-pointer"
+                    style={{ minWidth: 64, minHeight: 64 }}
                   >
-                    <div className="flex items-center px-4 py-3 bg-cardLight/50 dark:bg-cardDark/50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 gap-3 border border-borderLight/30 dark:border-borderDark/30 backdrop-blur-sm group-hover:border-accent/50">
-                      <div className="w-8 h-8 flex items-center justify-center">
-                        <img 
-                          src={skill.icon} 
-                          alt={skill.name} 
-                          className="w-6 h-6 filter dark:brightness-110" 
-                        />
-                      </div>
-                      <span className="font-medium text-textLight dark:text-textDark group-hover:text-accent transition-colors duration-300">
-                        {skill.name}
-                      </span>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        className="w-8 h-8 sm:w-10 sm:h-10 filter dark:brightness-110"
+                        loading="lazy"
+                      />
                     </div>
-                  </motion.div>
+                    <span className="font-medium text-xs sm:text-sm text-textLight dark:text-textDark group-hover:text-accent transition-colors duration-200 text-center">
+                      {skill.name}
+                    </span>
+                  </div>
                 ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
     </section>

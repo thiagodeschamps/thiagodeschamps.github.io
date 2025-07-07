@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Building2, Award, Globe, ArrowUpRight } from "lucide-react";
 
@@ -94,147 +94,129 @@ const jobs = [
 function CompanyLogo({ src, alt, initials, companyShort }) {
     const [imgError, setImgError] = useState(false);
     let sizeClass = "w-12 h-12";
-    if (companyShort === "Grupo Boticário") sizeClass = "w-30 h-30";
+    if (companyShort === "Grupo Boticário") sizeClass = "w-24 h-24";
     if (companyShort === "Americanas S.A.") sizeClass = "w-12 h-12";
     if (companyShort === "IFF" || companyShort === "International Flavors & Fragrances") sizeClass = "w-14 h-14";
     return imgError || !src ? (
-        <div className={`${sizeClass} rounded-full flex items-center justify-center text-accent font-bold text-lg select-none`}>
+        <div className={`${sizeClass} rounded-full flex items-center justify-center text-accent font-bold text-lg select-none bg-cardLight/60 dark:bg-cardDark/60`}>
             {initials}
         </div>
     ) : (
         <img
             src={src}
             alt={alt}
-            className={`${sizeClass} object-contain block`}
+            className={`${sizeClass} object-contain block rounded-xl bg-white`}
             onError={() => setImgError(true)}
             style={{ background: 'none', borderRadius: '0.75rem' }}
+            loading="lazy"
         />
     );
 }
 
-export default function Experience() {
-    const [hasAnimated, setHasAnimated] = useState(false);
-
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
-        const timer = setTimeout(() => setHasAnimated(true), 100);
-        return () => clearTimeout(timer);
+        setIsMobile(window.innerWidth < 768);
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
+    return isMobile;
+}
 
+export default function Experience() {
+    const isMobile = useIsMobile();
     return (
-        <section id="experience" className="py-20 bg-gradient-to-br from-violet-50 via-white to-orange-50 dark:from-bgDark dark:via-bgDark dark:to-bgDark">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-center mb-16"
-            >
-                <h2 className="section-title mb-4">Professional Experience</h2>
-                <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-3xl mx-auto">
+        <section id="experience" className="py-10 px-4 sm:py-20 w-full max-w-screen-md mx-auto bg-gradient-to-br from-violet-50 via-white to-orange-50 dark:from-bgDark dark:via-bgDark dark:to-bgDark">
+            <div className="text-center mb-8 sm:mb-16">
+                <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Professional Experience</h2>
+                <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
                     Here's where I've worked and what I've done. If you want to know more about my experience or have any questions, just ask me.
                 </p>
-            </motion.div>
+            </div>
 
-            <div className="space-y-8 max-w-4xl mx-auto">
+            <div className="space-y-8 max-w-2xl mx-auto">
                 {jobs.map((job, idx) => (
-                    <motion.div
+                    <div
                         key={job.company + job.date}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.1, duration: 0.6 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="group relative bg-black/60 dark:bg-cardDark/80 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                        className="group relative bg-black/60 dark:bg-cardDark/80 rounded-2xl shadow-md backdrop-blur-md border border-white/10 overflow-hidden flex flex-col gap-4 p-5 sm:p-8"
                     >
                         {/* Gradient Accent Bar */}
                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accentHover to-purple-500" />
 
                         {/* Card Content */}
-                        <div className="p-8 md:p-10">
-                            {/* Header Row */}
-                            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
-                                <div className="flex items-start gap-6">
-                                    {/* Company Logo */}
-                                    <div className="relative">
-                                        <div className="w-16 h-16 flex items-center justify-center overflow-hidden group-hover:shadow-xl transition-shadow duration-300">
-                                            <CompanyLogo src={job.logo} alt={job.companyShort} initials={job.initials} companyShort={job.companyShort} />
-                                        </div>
-                                    </div>
-
-                                    {/* Job Details */}
-                                    <div className="flex-1">
-                                        <h3 className="text-2xl md:text-3xl font-extrabold text-textLight dark:text-textDark leading-tight mb-2">
-                                            {job.title}
-                                        </h3>
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <Globe className="w-4 h-4 text-accent" />
-                                            <a
-                                                href={job.companyUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-accent font-semibold text-lg hover:text-accentHover transition-colors duration-200 flex items-center gap-1 group/link"
-                                            >
-                                                {job.company}
-                                                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
-                                            </a>
-                                        </div>
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-4">
+                            <div className="flex items-center gap-4 sm:gap-6">
+                                {/* Company Logo */}
+                                <div className="relative">
+                                    <div className="w-16 h-16 flex items-center justify-center overflow-hidden group-hover:shadow-xl transition-shadow duration-300">
+                                        <CompanyLogo src={job.logo} alt={job.companyShort} initials={job.initials} companyShort={job.companyShort} />
                                     </div>
                                 </div>
 
-                                {/* Meta Information */}
-                                <div className="flex flex-wrap items-center gap-4 text-sm text-textLightSecondary dark:text-textDarkSecondary lg:justify-end">
-                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-accent/10 to-purple-500/10 rounded-full">
-                                        <Calendar className="w-4 h-4 text-accent" />
-                                        <span className="font-medium">{job.date}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full">
-                                        <MapPin className="w-4 h-4 text-blue-500" />
-                                        <span className="font-medium">{job.location}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full">
-                                        <Award className="w-4 h-4 text-green-500" />
-                                        <span className="font-medium">{job.type}</span>
+                                {/* Job Details */}
+                                <div className="flex-1 text-left">
+                                    <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-textLight dark:text-textDark leading-tight mb-2">
+                                        {job.title}
+                                    </h3>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <Globe className="w-4 h-4 text-accent" />
+                                        <a
+                                            href={job.companyUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-accent font-semibold text-base sm:text-lg hover:text-accentHover transition-colors duration-200 flex items-center gap-1 group/link"
+                                            style={{ minHeight: 44 }}
+                                            aria-label={`Visit ${job.company}`}
+                                        >
+                                            {job.company}
+                                            <ArrowUpRight className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Progression for Americanas */}
-                            {job.progression ? (
-                                <div className="space-y-6">
-                                    {job.progression.map((role, roleIdx) => (
-                                        <div key={roleIdx} className="relative">
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-accent to-purple-500" />
-                                                <h4 className="text-lg font-bold text-textLight dark:text-textDark">
-                                                    {role.role}
-                                                </h4>
-                                                <span className="text-sm text-textLightSecondary dark:text-textDarkSecondary font-medium">
-                                                    {role.period}
-                                                </span>
-                                            </div>
-                                            <ul className="space-y-3 pl-5">
-                                                {role.highlights.map((highlight, i) => (
-                                                    <li key={i} className="flex items-start gap-3 text-base text-textLightSecondary dark:text-textDarkSecondary leading-relaxed">
-                                                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-accent to-purple-500 flex-shrink-0" />
-                                                        <span>{highlight}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ))}
+                            {/* Meta Information */}
+                            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-textLightSecondary dark:text-textDarkSecondary sm:justify-end">
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-accent/10 to-purple-500/10 rounded-full">
+                                    <Calendar className="w-4 h-4 text-accent" />
+                                    <span className="font-medium">{job.date}</span>
                                 </div>
-                            ) : (
-                                /* Regular Bullets */
-                                <ul className="space-y-4 pl-2">
-                                    {job.bullets.map((bullet, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-base md:text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed">
-                                            <span className="mt-2 w-2 h-2 rounded-full bg-gradient-to-r from-accent to-purple-500 flex-shrink-0" />
-                                            <span>{bullet}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full">
+                                    <MapPin className="w-4 h-4 text-blue-500" />
+                                    <span className="font-medium">{job.location}</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full">
+                                    <Award className="w-4 h-4 text-green-500" />
+                                    <span className="font-medium">{job.type}</span>
+                                </div>
+                            </div>
                         </div>
-                    </motion.div>
+
+                        {/* Progression for Americanas */}
+                        {job.progression ? (
+                            <div className="space-y-2">
+                                {job.progression.map((prog, pidx) => (
+                                    <div key={prog.role + prog.period} className="mb-2">
+                                        <div className="font-semibold text-accent text-base sm:text-lg">{prog.role}</div>
+                                        <div className="text-xs text-textLightSecondary dark:text-textDarkSecondary mb-1">{prog.period}</div>
+                                        <ul className="list-disc pl-5 text-sm sm:text-base text-textLightSecondary dark:text-textDarkSecondary space-y-1">
+                                            {prog.highlights.map((hl, hidx) => (
+                                                <li key={hidx}>{hl}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : null}
+
+                        {/* Bullets */}
+                        <ul className="list-disc pl-5 text-sm sm:text-base text-textLightSecondary dark:text-textDarkSecondary space-y-1">
+                            {job.bullets.map((bullet, bidx) => (
+                                <li key={bidx}>{bullet}</li>
+                            ))}
+                        </ul>
+                    </div>
                 ))}
             </div>
         </section>

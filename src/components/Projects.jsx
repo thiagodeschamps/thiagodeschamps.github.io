@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Code, Database, Globe, BookOpen } from "lucide-react";
 
@@ -41,98 +41,85 @@ const projects = [
   },
 ];
 
-export default function Projects() {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setHasAnimated(true), 100);
-    return () => clearTimeout(timer);
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+  return isMobile;
+}
 
+export default function Projects() {
+  const isMobile = useIsMobile();
   return (
-    <section id="projects" className="py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ type: "tween", ease: "easeOut", duration: 0.7 }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="text-center mb-12"
-      >
-        <h2 className="section-title mb-4">Projects & Publications</h2>
-        <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-3xl mx-auto">
+    <section id="projects" className="py-10 px-4 sm:py-16 w-full max-w-screen-md mx-auto">
+      <div className="text-center mb-8 sm:mb-12">
+        <h2 className="section-title mb-4 text-2xl sm:text-3xl md:text-4xl">Projects & Publications</h2>
+        <p className="text-textLightSecondary dark:text-textDarkSecondary max-w-2xl mx-auto text-base sm:text-lg">
           Here are some things I've built or worked on—real projects, real problems, and a lot of learning along the way. If you want to know more about any of these, just ask me.
         </p>
-      </motion.div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {projects.map((proj, idx) => (
-          <motion.div
+          <div
             key={proj.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ type: "tween", ease: "easeOut", delay: idx * 0.1, duration: 0.7 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className={`card p-6 group hover:shadow-xl transition-all duration-300 ${
-              proj.featured ? 'ring-2 ring-accent/20' : ''
-            }`}
+            className={`card p-5 sm:p-6 flex flex-col gap-4 bg-cardLight/80 dark:bg-cardDark/80 rounded-2xl shadow-md border border-borderLight/20 dark:border-borderDark/20`}
           >
-            <div className="space-y-4">
-              {/* Header */}
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-accent/10 dark:bg-accent/20 rounded-lg text-accent">
-                    {proj.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-textLight dark:text-textDark">
-                      {proj.name}
-                    </h3>
-                    <span className="text-xs font-medium text-accent bg-accent/10 dark:bg-accent/20 px-2 py-1 rounded-full">
-                      {proj.category}
-                    </span>
-                  </div>
-                </div>
-                {proj.featured && (
-                  <span className="text-xs bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-medium">
-                    Featured
-                  </span>
-                )}
+            {/* Header */}
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-accent/10 dark:bg-accent/20 rounded-lg text-accent">
+                {proj.icon}
               </div>
-
-              {/* Description */}
-              <p className="text-textLightSecondary dark:text-textDarkSecondary leading-relaxed">
-                {proj.desc} If you want details or have questions, just ask me.
-              </p>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2">
-                {proj.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="text-xs bg-cardLight/50 dark:bg-cardDark/50 text-textLightSecondary dark:text-textDarkSecondary px-2 py-1 rounded-md border border-borderLight/30 dark:border-borderDark/30"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div>
+                <h3 className="font-bold text-lg sm:text-xl text-textLight dark:text-textDark">
+                  {proj.name}
+                </h3>
+                <span className="text-xs font-medium text-accent bg-accent/10 dark:bg-accent/20 px-2 py-1 rounded-full">
+                  {proj.category}
+                </span>
               </div>
-
-              {/* Link */}
-              <motion.a
-                href={proj.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-accent font-medium hover:text-accentHover transition-colors duration-300 group/link"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <Github className="w-4 h-4" />
-                <span>View Project</span>
-                <ExternalLink className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" />
-              </motion.a>
+              {proj.featured && (
+                <span className="ml-auto text-xs bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-medium">
+                  Featured
+                </span>
+              )}
             </div>
-          </motion.div>
+
+            {/* Description */}
+            <p className="text-textLightSecondary dark:text-textDarkSecondary leading-relaxed text-base sm:text-lg">
+              {proj.desc} If you want details or have questions, just ask me.
+            </p>
+
+            {/* Technologies */}
+            <div className="flex flex-wrap gap-2">
+              {proj.tech.map((tech, i) => (
+                <span
+                  key={i}
+                  className="text-xs bg-cardLight/50 dark:bg-cardDark/50 text-textLightSecondary dark:text-textDarkSecondary px-2 py-1 rounded-md border border-borderLight/30 dark:border-borderDark/30"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Link */}
+            <a
+              href={proj.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-accent font-medium hover:text-accentHover transition-colors duration-200 group/link mt-2 text-base sm:text-lg"
+              style={{ minHeight: 44 }}
+              aria-label={`View ${proj.name} on GitHub`}
+            >
+              <Github className="w-5 h-5" />
+              <span>View Project</span>
+              <ExternalLink className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
+            </a>
+          </div>
         ))}
       </div>
     </section>
