@@ -27,7 +27,7 @@ export default function Hero() {
 
       {/* Name with Enhanced Gradient */}
       <motion.h1
-        className="text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
+        className="text-3xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent break-words leading-tight"
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.25, duration: 0.7 }}
