@@ -11,14 +11,14 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="py-12 mt-16 border-t border-borderLight/50 dark:border-borderDark/50">
+    <footer className="py-12 mt-16 border-t border-borderLight/50 dark:border-borderDark/50 bg-black/40 backdrop-blur-sm">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center space-y-6"
+          className="text-center space-y-6 text-white"
         >
           {/* Social Links */}
           <div className="flex justify-center gap-6">

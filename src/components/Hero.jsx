@@ -55,7 +55,7 @@ export default function Hero() {
         transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        I work with data engineering—building, running, and fixing data platforms so teams can get the information they need. If you want to talk about data or need a hand, just reach out.
+        I'm a data engineer who loves building data platforms from the ground up. My day-to-day is all about connecting systems, making sure data is reliable, and keeping everything running smoothly—whether it's integration, quality, governance, or DevOps for data. If you're curious about how this all works or need help with your own data setup, just ask!
       </motion.p>
 
       {/* Enhanced Social Links */}

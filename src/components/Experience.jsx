@@ -143,7 +143,7 @@ export default function Experience() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1, duration: 0.6 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        className="group relative bg-white dark:bg-cardDark rounded-3xl shadow-xl overflow-hidden border border-borderLight/30 dark:border-borderDark/30 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                        className="group relative bg-black/60 dark:bg-cardDark/80 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                     >
                         {/* Gradient Accent Bar */}
                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accentHover to-purple-500" />
