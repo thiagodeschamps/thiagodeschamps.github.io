@@ -51,12 +51,21 @@ function App() {
     }
   }, [blobsAnimated]);
 
-  const navItems = [
-    { href: "#skills", label: "Skills" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#education", label: "Education" },
-  ];
+  const navText = {
+    en: [
+      { href: "#skills", label: "Skills" },
+      { href: "#experience", label: "Experience" },
+      { href: "#projects", label: "Projects" },
+      { href: "#education", label: "Education" },
+    ],
+    pt: [
+      { href: "#skills", label: "Competências" },
+      { href: "#experience", label: "Experiência" },
+      { href: "#projects", label: "Projetos" },
+      { href: "#education", label: "Formação" },
+    ]
+  };
+  const navItems = navText[lang];
 
   return (
     <div className="min-h-screen bg-bgLight dark:bg-bgDark text-textLight dark:text-textDark transition-all duration-500">
