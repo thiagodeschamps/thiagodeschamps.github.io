@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Github, Linkedin, Mail, FileText, MapPin, Download } from "lucide-react";
 import { motion } from "framer-motion";
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return isMobile;
+}
+
 export default function Hero() {
+  const isMobile = useIsMobile();
   return (
     <section className="flex flex-col items-center gap-6 py-16 text-center relative z-10">
       {/* Profile Image with Enhanced Styling */}
@@ -10,7 +22,7 @@ export default function Hero() {
         className="relative"
         initial={{ scale: 0.7, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ type: "tween", ease: "easeOut", duration: 0.7, delay: 0.1 }}
+        transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.3 : 0.7, delay: 0.1 }}
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="relative">
@@ -19,18 +31,19 @@ export default function Hero() {
             alt="Thiago Deschamps"
             className="rounded-full border-4 border-accent shadow-2xl w-36 h-36 md:w-40 md:h-40 object-cover"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
+            transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.15 : 0.3 }}
+            loading="lazy"
           />
-          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-xl" />
+          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-xl md:block hidden" />
         </div>
       </motion.div>
 
       {/* Name with Enhanced Gradient */}
       <motion.h1
         className="text-3xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-500 to-cyan-400 bg-clip-text text-transparent break-words leading-tight"
-        initial={{ y: 30, opacity: 0 }}
+        initial={{ y: isMobile ? 10 : 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ type: "tween", ease: "easeOut", delay: 0.25, duration: 0.7 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.25, duration: isMobile ? 0.3 : 0.7 }}
         viewport={{ once: true, amount: 0.2 }}
       >
         Thiago Deschamps
@@ -41,7 +54,7 @@ export default function Hero() {
         className="text-xl md:text-2xl font-semibold text-textLightSecondary dark:text-textDarkSecondary"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.4, duration: isMobile ? 0.2 : 0.5 }}
         viewport={{ once: true, amount: 0.2 }}
       >
         Data (Platform) Engineer
@@ -50,9 +63,9 @@ export default function Hero() {
       {/* Description with Enhanced Styling */}
       <motion.p
         className="max-w-3xl mt-4 text-lg text-textLightSecondary dark:text-textDarkSecondary leading-relaxed"
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: isMobile ? 8 : 20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: 0.7 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.5, duration: isMobile ? 0.3 : 0.7 }}
         viewport={{ once: true, amount: 0.2 }}
       >
         I'm a data engineer who loves building data platforms from the ground up. My day-to-day is all about connecting systems, making sure data is reliable, and keeping everything running smoothly—whether it's integration, quality, governance, or DevOps for data. If you're curious about how this all works or need help with your own data setup, just ask!
@@ -63,7 +76,7 @@ export default function Hero() {
         className="flex flex-wrap justify-center gap-4 mt-8"
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ type: "tween", ease: "easeOut", delay: 0.65, duration: 0.6 }}
+        transition={{ type: "tween", ease: "easeOut", delay: 0.65, duration: isMobile ? 0.2 : 0.6 }}
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.a 
@@ -73,7 +86,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.1 : 0.2 }}
         >
           <Mail className="w-5 h-5" />
           <span className="hidden sm:inline">Email</span>
@@ -86,7 +99,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.1 : 0.2 }}
         >
           <Github className="w-5 h-5" />
           <span className="hidden sm:inline">GitHub</span>
@@ -99,7 +112,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.1 : 0.2 }}
         >
           <Linkedin className="w-5 h-5" />
           <span className="hidden sm:inline">LinkedIn</span>
@@ -112,7 +125,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.1 : 0.2 }}
         >
           <Download className="w-5 h-5" />
           <span className="hidden sm:inline">CV</span>
@@ -122,7 +135,7 @@ export default function Hero() {
           className="btn-hero group cursor-default" 
           title="São Paulo, Brazil"
           whileHover={{ y: -2 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+          transition={{ type: "tween", ease: "easeOut", duration: isMobile ? 0.1 : 0.2 }}
         >
           <MapPin className="w-5 h-5 text-blue-500" />
           <span className="hidden sm:inline">São Paulo, BR</span>
