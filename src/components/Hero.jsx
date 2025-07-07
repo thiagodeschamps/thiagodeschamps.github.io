@@ -41,7 +41,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ type: "tween", ease: "easeOut", delay: 0.4, duration: 0.5 }}
       >
-        Senior Data Platform Engineer
+        Data (Platform) Engineer
       </motion.h2>
 
       {/* Description with Enhanced Styling */}
